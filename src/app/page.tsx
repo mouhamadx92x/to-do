@@ -2,9 +2,18 @@
 import { Box, Button, Input, Typography } from "@mui/joy";
 import React, { useState } from "react";
 import { homePageMainBox, tittleText, toDoInputField } from "./styles";
+import { v4 as uuidV4 } from "uuid";
+import { clearScreenDown } from "readline";
+
+interface ToDoItem {
+    name: string;
+    id: string;
+    completed: boolean;
+}
 
 const ToDo = () => {
     const [inputValue, setInputValue] = useState("");
+    const [toDo, setToDo] = useState<ToDoItem[]>([]);
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
@@ -12,7 +21,11 @@ const ToDo = () => {
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Input Value:", inputValue);
+        setToDo([
+            ...toDo,
+            { name: inputValue, id: uuidV4(), completed: false },
+        ]);
+        console.log("1", toDo);
     };
 
     return (
@@ -28,7 +41,7 @@ const ToDo = () => {
                     required
                     sx={toDoInputField}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Add to do</Button>
             </Box>
         </>
     );
