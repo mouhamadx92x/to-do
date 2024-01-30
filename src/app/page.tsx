@@ -1,10 +1,12 @@
-import { Box, Button, Input } from "@mui/joy";
+"use client";
+import { Box, Button, Input, Typography } from "@mui/joy";
 import React, { useState } from "react";
+import { homePageMainBox, tittleText, toDoInputField } from "./styles";
 
 const ToDo = () => {
     const [inputValue, setInputValue] = useState("");
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
 
@@ -14,15 +16,21 @@ const ToDo = () => {
     };
 
     return (
-        <Box component="form" onSubmit={submitHandler}>
-            <Input
-                placeholder="Try to submit with no text!"
-                value={inputValue}
-                onChange={handleChange}
-                required
-            />
-            <Button type="submit">Submit</Button>
-        </Box>
+        <>
+            <Typography component="h1" sx={tittleText}>
+                TO DO
+            </Typography>
+            <Box component="form" onSubmit={submitHandler} sx={homePageMainBox}>
+                <Input
+                    placeholder="Try to submit with no text!"
+                    value={inputValue}
+                    onChange={changeHandler}
+                    required
+                    sx={toDoInputField}
+                />
+                <Button type="submit">Submit</Button>
+            </Box>
+        </>
     );
 };
 
