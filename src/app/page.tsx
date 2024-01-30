@@ -1,12 +1,20 @@
 "use client";
-import { Box, Button, Input, Typography } from "@mui/joy";
+import {
+    Box,
+    Button,
+    Input,
+    List,
+    ListItem,
+    Typography,
+    Checkbox,
+} from "@mui/joy";
+import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useState } from "react";
 import { homePageMainBox, tittleText, toDoInputField } from "./styles";
 import { v4 as uuidV4 } from "uuid";
-import { clearScreenDown } from "readline";
 
 interface ToDoItem {
-    name: string;
+    description: string;
     id: string;
     completed: boolean;
 }
@@ -23,9 +31,9 @@ const ToDo = () => {
         event.preventDefault();
         setToDo([
             ...toDo,
-            { name: inputValue, id: uuidV4(), completed: false },
+            { description: inputValue, id: uuidV4(), completed: false },
         ]);
-        console.log("1", toDo);
+        setInputValue("");
     };
 
     return (
@@ -35,7 +43,7 @@ const ToDo = () => {
             </Typography>
             <Box component="form" onSubmit={submitHandler} sx={homePageMainBox}>
                 <Input
-                    placeholder="Try to submit with no text!"
+                    placeholder="What is your mission?"
                     value={inputValue}
                     onChange={changeHandler}
                     required
@@ -43,6 +51,17 @@ const ToDo = () => {
                 />
                 <Button type="submit">Add to do</Button>
             </Box>
+
+            {toDo && (
+                <List>
+                    {toDo.map(({ description, id }) => (
+                        <ListItem key={id}>
+                            <Checkbox label={description} />
+                            <DeleteIcon />
+                        </ListItem>
+                    ))}
+                </List>
+            )}
         </>
     );
 };
