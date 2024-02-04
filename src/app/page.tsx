@@ -46,6 +46,16 @@ const ToDo = () => {
         setToDo(toDo.filter((singleToDo) => singleToDo.id !== id));
     };
 
+    const completeHandler = (id: string) => {
+        setToDo(
+            toDo.map((singleToDo) =>
+                singleToDo.id === id
+                    ? { ...singleToDo, completed: true }
+                    : singleToDo
+            )
+        );
+    };
+
     return (
         <>
             <Typography component="h1" sx={tittleTextStyles}>
@@ -68,11 +78,13 @@ const ToDo = () => {
 
             {toDo && (
                 <List sx={toDoListStyles}>
-                    {toDo.map(({ description, id }) => (
+                    {toDo.map(({ description, id, completed }) => (
                         <ListItem key={id}>
                             <Checkbox
                                 label={description}
                                 sx={toDoCheckBoxStyles}
+                                checked={completed}
+                                onChange={() => completeHandler(id)}
                             />
                             <DeleteIcon onClick={() => deleteHandler(id)} />
                         </ListItem>
