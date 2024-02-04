@@ -42,6 +42,10 @@ const ToDo = () => {
         setInputValue("");
     };
 
+    const deleteHandler = (id: string) => {
+        setToDo(toDo.filter((singleToDo) => singleToDo.id !== id));
+    };
+
     return (
         <>
             <Typography component="h1" sx={tittleTextStyles}>
@@ -70,7 +74,7 @@ const ToDo = () => {
                                 label={description}
                                 sx={toDoCheckBoxStyles}
                             />
-                            <DeleteIcon />
+                            <DeleteIcon onClick={() => deleteHandler(id)} />
                         </ListItem>
                     ))}
                 </List>
