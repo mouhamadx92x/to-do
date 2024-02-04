@@ -10,7 +10,13 @@ import {
 } from "@mui/joy";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useState } from "react";
-import { homePageMainBox, tittleText, toDoInputField } from "./styles";
+import {
+    homePageMainBoxStyles,
+    tittleTextStyles,
+    toDoInputFieldStyles,
+    toDoListStyles,
+    toDoCheckBoxStyles,
+} from "./styles";
 import { v4 as uuidV4 } from "uuid";
 
 interface ToDoItem {
@@ -38,25 +44,32 @@ const ToDo = () => {
 
     return (
         <>
-            <Typography component="h1" sx={tittleText}>
+            <Typography component="h1" sx={tittleTextStyles}>
                 TO DO
             </Typography>
-            <Box component="form" onSubmit={submitHandler} sx={homePageMainBox}>
+            <Box
+                component="form"
+                onSubmit={submitHandler}
+                sx={homePageMainBoxStyles}
+            >
                 <Input
                     placeholder="What is your mission?"
                     value={inputValue}
                     onChange={changeHandler}
                     required
-                    sx={toDoInputField}
+                    sx={toDoInputFieldStyles}
                 />
                 <Button type="submit">Add to do</Button>
             </Box>
 
             {toDo && (
-                <List>
+                <List sx={toDoListStyles}>
                     {toDo.map(({ description, id }) => (
                         <ListItem key={id}>
-                            <Checkbox label={description} />
+                            <Checkbox
+                                label={description}
+                                sx={toDoCheckBoxStyles}
+                            />
                             <DeleteIcon />
                         </ListItem>
                     ))}

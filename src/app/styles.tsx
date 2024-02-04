@@ -1,4 +1,4 @@
-export const homePageMainBox = {
+export const homePageMainBoxStyles = {
     width: "40vw",
     margin: "0 auto",
     display: "flex",
@@ -7,10 +7,21 @@ export const homePageMainBox = {
     justifyContent: "space-between",
 };
 
-export const tittleText = {
+export const tittleTextStyles = {
     textAlign: "center",
     marginTop: "15%",
-    fontSize: "2rem",
+    fontSize: "3rem",
 };
 
-export const toDoInputField = { width: "80%" };
+export const toDoInputFieldStyles = { width: "80%" };
+
+export const toDoListStyles = {
+    width: "35vw",
+    margin: "0 auto",
+};
+
+export const toDoCheckBoxStyles = {
+    width: "35vw",
+    margin: "0 auto",
+    fontSize: "1.5rem",
+};
